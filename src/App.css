@@ -1,0 +1,80 @@
+.wedding-app {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--white);
+}
+
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.heading-wrapper {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.sub-title {
+  display: block;
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: var(--primary-pink);
+  margin-bottom: 5px;
+}
+
+.main-title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 80px 0;
+  }
+  .main-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Nav Link Animation */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 18px;
+  background-color: #e8345a;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::before {
+  width: calc(100% - 36px); /* account for the 18px left and right padding */
+}
+
+.nav-link:hover {
+  color: #e8345a !important;
+}
+
+/* Hero Content alignment */
+.hero-align-left {
+  align-items: flex-start;
+  padding-left: 5%;
+}
+
+@media (max-width: 991px) {
+  .hero-align-left {
+    align-items: center;
+    padding-left: 0;
+  }
+}
