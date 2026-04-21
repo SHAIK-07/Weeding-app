@@ -272,7 +272,7 @@ const Hero = () => {
 
           {/* Hero Content (Floating Circle) constrained to the left viewport space */}
           <div
-            className="container hero-align-left hero-content-wrapper"
+            className="hero-content-wrapper"
             style={{
               position: 'relative',
               zIndex: 3,
