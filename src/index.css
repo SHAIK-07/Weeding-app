@@ -212,3 +212,19 @@ section {
     padding: 0;
   }
 }
+
+/* Hero Content Layout */
+.hero-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 8vw;
+}
+
+@media (max-width: 768px) {
+  .hero-content-wrapper {
+    align-items: center;
+    padding-left: 0;
+  }
+}

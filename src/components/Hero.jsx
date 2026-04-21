@@ -124,41 +124,6 @@ const Hero = () => {
         background: '#fef7f9',
       }}
     >
-      {/* Background Image Swipable Container */}
-      <div 
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          overflowX: 'auto',
-          overflowY: 'hidden',
-          zIndex: 1,
-          WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-        }}
-      >
-        <style>{`.hide-scrollbar-hero::-webkit-scrollbar { display: none; }`}</style>
-        <motion.img
-          className="hide-scrollbar-hero"
-          src="/images/demo-wedding-invitation-banner-bg.jpg.webp"
-          alt="Couple Background"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.6, ease: 'easeOut' }}
-          style={{
-            height: '100%',
-            width: 'auto',
-            minWidth: 'max(100vw, 150vh)', /* Forces the image to be wider than screen on narrow profiles, creating swipe space */
-            maxWidth: 'none',
-            objectFit: 'cover',
-            display: 'block',
-          }}
-        />
-      </div>
-
       {/* Navigation Bar */}
       <motion.nav
         initial={{ y: -60, opacity: 0 }}
@@ -262,195 +227,258 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Hero Content */}
-      <div
-        className="container hero-align-left"
+      {/* Unified Background and Hero Circle Swipable Container */}
+      <div 
+        id="hero-scroll-container"
         style={{
-          position: 'relative',
-          zIndex: 2,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
           height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          textAlign: 'center',
-          pointerEvents: 'none', /* Bypasses touch to let users swipe the background */
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          zIndex: 1,
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          scrollBehavior: 'smooth',
         }}
       >
-        {/* Large watercolor splashes with Parallax behind the circle */}
-        <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none', zIndex: 1 }}>
-          <ParallaxImage 
-            src="/images/demo-wedding-invitation-home-effect-01.png"
-            size="280px" top="10%" left="5%" springX={springX} springY={springY} factor={0.03} delay={0.4}
-          />
-          <ParallaxImage 
-            src="/images/demo-wedding-invitation-home-effect-01.png"
-            size="220px" top="65%" left="75%" springX={springX} springY={springY} factor={0.05} delay={0.6}
-          />
-        </div>
-
-        {/* Floating Circle */}
-        <motion.div
-          initial={{ scale: 0.75, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
-          style={{
-            background: 'rgba(255, 255, 255, 0.96)',
-            padding: 'clamp(20px, 4vw, 60px)',
-            borderRadius: '50%',
-            aspectRatio: '1/1',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: '0 25px 70px rgba(0,0,0,0.13)',
-            maxWidth: '540px',
-            width: 'clamp(280px, 90vw, 540px)',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-
-          {/* Splatter Dots with parallax effect */}
-          {splatters.map((dot) => (
-            <ParallaxDot key={dot.id} dot={dot} springX={springX} />
-          ))}
-
-          {/* Save The Date */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+        <style>{`.hide-scrollbar-hero::-webkit-scrollbar { display: none; }`}</style>
+        
+        {/* Wide Canvas Area */}
+        <div style={{ position: 'relative', height: '100%', minWidth: 'max(100vw, 150vh)', display: 'flex' }}>
+          
+          {/* Background Image */}
+          <motion.img
+            src="/images/demo-wedding-invitation-banner-bg.jpg.webp"
+            alt="Couple Background"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.6, ease: 'easeOut' }}
             style={{
-              background: '#1a1a1a',
-              color: '#ffffff',
-              padding: '8px 24px',
-              display: 'inline-block',
-              marginBottom: '20px',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              height: '100%',
+              width: '100%',
+              objectFit: 'cover',
+              zIndex: 1,
+              pointerEvents: 'none',
+            }}
+          />
+
+
+          {/* Hero Content (Floating Circle) constrained to the left viewport space */}
+          <div
+            className="container hero-align-left hero-content-wrapper"
+            style={{
               position: 'relative',
               zIndex: 3,
+              width: '100vw', /* Circle floats purely in the first screen length */
+              height: '100%',
+              pointerEvents: 'none', /* Bypasses touch to let users swipe easily */
             }}
           >
-            <span
+            {/* Floating Circle */}
+            <motion.div
+              initial={{ scale: 0.75, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
               style={{
-                fontSize: 'clamp(0.6rem, 2.5vw, 0.9rem)',
-                letterSpacing: '5px',
-                textTransform: 'uppercase',
-                fontWeight: '700',
-                fontFamily: 'var(--font-sans)',
+                background: 'rgba(255, 255, 255, 0.96)',
+                padding: 'clamp(20px, 4vw, 60px)',
+                borderRadius: '50%',
+                aspectRatio: '1/1',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                boxShadow: '0 25px 70px rgba(0,0,0,0.13)',
+                maxWidth: '540px',
+                width: 'clamp(280px, 90vw, 540px)',
+                position: 'relative',
+                overflow: 'hidden',
+                pointerEvents: 'auto',
               }}
             >
-              Save The Date
-            </span>
-          </motion.div>
+              {/* Splatter Dots with parallax effect */}
+              {splatters.map((dot) => (
+                <ParallaxDot key={dot.id} dot={dot} springX={springX} />
+              ))}
 
-          {/* Bride Name */}
-          <motion.h1
-            initial={{ x: -80, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              fontSize: 'clamp(3rem, 11vw, 6.5rem)',
-              fontFamily: '"Oswald", "Impact", var(--font-serif)',
-              lineHeight: 0.95,
-              background: 'linear-gradient(to right, #cf2056, #ef8131)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textTransform: 'uppercase',
-              letterSpacing: '3px',
-              fontWeight: '700',
-              marginBottom: '4px',
-              position: 'relative',
-              zIndex: 2,
-            }}
-          >
-            SWETHA
-          </motion.h1>
+              {/* Save The Date */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                style={{
+                  background: '#1a1a1a',
+                  color: '#ffffff',
+                  padding: '8px 24px',
+                  display: 'inline-block',
+                  marginBottom: '20px',
+                  position: 'relative',
+                  zIndex: 3,
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: 'clamp(0.6rem, 2.5vw, 0.9rem)',
+                    letterSpacing: '5px',
+                    textTransform: 'uppercase',
+                    fontWeight: '700',
+                    fontFamily: 'var(--font-sans)',
+                  }}
+                >
+                  Save The Date
+                </span>
+              </motion.div>
 
-          {/* AND separator */}
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.5, ease: 'backOut' }}
-            style={{
-              fontSize: 'clamp(0.7rem, 3vw, 1.2rem)',
-              letterSpacing: '5px',
-              color: '#444',
-              fontWeight: '700',
-              margin: 'clamp(5px, 2vw, 10px) 0',
-              fontFamily: 'var(--font-sans)',
-              position: 'relative',
-              zIndex: 2,
-            }}
-          >
-            — AND —
-          </motion.div>
+              {/* Bride Name */}
+              <motion.h1
+                initial={{ x: -80, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  fontSize: 'clamp(3rem, 11vw, 6.5rem)',
+                  fontFamily: '"Oswald", "Impact", var(--font-serif)',
+                  lineHeight: 0.95,
+                  background: 'linear-gradient(to right, #cf2056, #ef8131)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textTransform: 'uppercase',
+                  letterSpacing: '3px',
+                  fontWeight: '700',
+                  marginBottom: '4px',
+                  position: 'relative',
+                  zIndex: 2,
+                }}
+              >
+                SWETHA
+              </motion.h1>
 
-          {/* Groom Name */}
-          <motion.h1
-            initial={{ x: 80, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              fontSize: 'clamp(3rem, 11vw, 6.5rem)',
-              fontFamily: '"Oswald", "Impact", var(--font-serif)',
-              lineHeight: 0.95,
-              background: 'linear-gradient(to right, #ef8131, #cf2056)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textTransform: 'uppercase',
-              letterSpacing: '3px',
-              fontWeight: '700',
-              marginBottom: '20px',
-              position: 'relative',
-              zIndex: 2,
-            }}
-          >
-            SATISH
-          </motion.h1>
+              {/* AND separator */}
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.5, ease: 'backOut' }}
+                style={{
+                  fontSize: 'clamp(0.7rem, 3vw, 1.2rem)',
+                  letterSpacing: '5px',
+                  color: '#444',
+                  fontWeight: '700',
+                  margin: 'clamp(5px, 2vw, 10px) 0',
+                  fontFamily: 'var(--font-sans)',
+                  position: 'relative',
+                  zIndex: 2,
+                }}
+              >
+                — AND —
+              </motion.div>
 
-          {/* Date */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.0, duration: 0.7 }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 'clamp(8px, 3vw, 20px)',
-              fontSize: 'clamp(0.9rem, 3vw, 1.3rem)',
-              fontWeight: '600',
-              color: '#333',
-              fontFamily: 'var(--font-sans)',
-              position: 'relative',
-              zIndex: 2,
-            }}
-          >
-            <span style={{ letterSpacing: '2px' }}>May</span>
-            <span style={{ width: '2px', height: 'clamp(20px, 4vw, 35px)', background: '#ccc' }} />
-            <span
-              style={{
-                fontSize: 'clamp(2rem, 7vw, 3.5rem)',
-                fontWeight: '900',
-                lineHeight: 1,
-                fontFamily: 'var(--font-serif)',
-                color: '#1a1a1a',
-              }}
-            >
-              06
-            </span>
-            <span style={{ width: '2px', height: 'clamp(20px, 4vw, 35px)', background: '#ccc' }} />
-            <span style={{ letterSpacing: '2px' }}>2026</span>
-          </motion.div>
-        </motion.div>
+              {/* Groom Name */}
+              <motion.h1
+                initial={{ x: 80, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  fontSize: 'clamp(3rem, 11vw, 6.5rem)',
+                  fontFamily: '"Oswald", "Impact", var(--font-serif)',
+                  lineHeight: 0.95,
+                  background: 'linear-gradient(to right, #ef8131, #cf2056)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textTransform: 'uppercase',
+                  letterSpacing: '3px',
+                  fontWeight: '700',
+                  marginBottom: '20px',
+                  position: 'relative',
+                  zIndex: 2,
+                }}
+              >
+                SATISH
+              </motion.h1>
+
+              {/* Date */}
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1.0, duration: 0.7 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'clamp(8px, 3vw, 20px)',
+                  fontSize: 'clamp(0.9rem, 3vw, 1.3rem)',
+                  fontWeight: '600',
+                  color: '#333',
+                  fontFamily: 'var(--font-sans)',
+                  position: 'relative',
+                  zIndex: 2,
+                }}
+              >
+                <span style={{ letterSpacing: '2px' }}>May</span>
+                <span style={{ width: '2px', height: 'clamp(20px, 4vw, 35px)', background: '#ccc' }} />
+                <span
+                  style={{
+                    fontSize: 'clamp(2rem, 7vw, 3.5rem)',
+                    fontWeight: '900',
+                    lineHeight: 1,
+                    fontFamily: 'var(--font-serif)',
+                    color: '#1a1a1a',
+                  }}
+                >
+                  06
+                </span>
+                <span style={{ width: '2px', height: 'clamp(20px, 4vw, 35px)', background: '#ccc' }} />
+                <span style={{ letterSpacing: '2px' }}>2026</span>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
       </div>
 
-      {/* Decorative Wave / Watercolor at bottom - Out of container to span full width */}
+      {/* Floating Action Button for Swiping */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
+        onClick={() => {
+          document.getElementById('hero-scroll-container').scrollBy({ left: window.innerWidth * 0.7, behavior: 'smooth' });
+        }}
+        style={{
+          position: 'absolute',
+          right: '5vw',
+          bottom: '100px',
+          zIndex: 10,
+          background: 'rgba(255, 255, 255, 0.95)',
+          border: 'none',
+          padding: '12px 24px',
+          borderRadius: '30px',
+          boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          cursor: 'pointer',
+          color: '#ef8131',
+          fontWeight: '700',
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.85rem',
+          letterSpacing: '2px',
+          textTransform: 'uppercase',
+        }}
+      >
+        Swipe <span style={{ fontSize: '1.4rem', lineHeight: 1 }}>→</span>
+      </motion.button>
+
+      {/* Decorative Wave / Watercolor at bottom */}
       <img
         src="/images/demo-wedding-invitation-banner-effect.png"
         alt="effect"
         style={{
           position: 'absolute',
-          bottom: '-2px', /* Fix: Sits exactly at bottom edge, overlaying background */
+          bottom: '-2px',
           left: 0,
           width: '100%',
           pointerEvents: 'none',
