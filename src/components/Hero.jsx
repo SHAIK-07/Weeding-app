@@ -62,6 +62,7 @@ const ParallaxImage = ({ src, size, top, left, springX, springY, factor, delay }
 const Hero = () => {
   const [scrolled, setScrolled] = useState(false)
   const [showHeart, setShowHeart] = useState(true)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // Alternate between SVGs heart and A every 1.2s
   useEffect(() => {
@@ -142,67 +143,25 @@ const Hero = () => {
         }}
       />
 
-      {/* Navigation Bar — transparent, becomes white on scroll */}
+      {/* Navigation Bar */}
       <motion.nav
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          zIndex: 100,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '20px 40px',
-          background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(10px)' : 'none',
-          boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.06)' : 'none',
-          transition: 'background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease',
-          gap: '0px',
-        }}
+        className={`main-nav ${scrolled ? 'scrolled' : ''}`}
       >
         {navItems.map((item) => (
           <a
             key={item.label}
             href={item.href}
-            className="nav-link"
-            style={{
-              textDecoration: 'none',
-              color: scrolled ? '#232323' : '#232323',
-              fontSize: '0.72rem',
-              letterSpacing: '2.5px',
-              textTransform: 'uppercase',
-              fontWeight: '700',
-              padding: '0 18px',
-              fontFamily: 'var(--font-sans)',
-              transition: 'color 0.3s ease',
-              position: 'relative',
-              display: 'inline-block'
-            }}
+            className="nav-link desktop-link"
           >
             {item.label}
           </a>
         ))}
 
         {/* Center Logo — SW [♥ or A alternating] SA */}
-        <div
-          style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1.5rem',
-            fontWeight: '900',
-            color: '#232323',
-            padding: '0 24px',
-            letterSpacing: '3px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '4px',
-            whiteSpace: 'nowrap',
-            userSelect: 'none',
-          }}
-        >
+        <div className="nav-logo">
           <span>SW</span>
 
           {/* Middle slot: alternates between SVG Heart and red A */}
@@ -256,25 +215,36 @@ const Hero = () => {
           <a
             key={item.label}
             href={item.href}
-            className="nav-link"
-            style={{
-              textDecoration: 'none',
-              color: '#232323',
-              fontSize: '0.72rem',
-              letterSpacing: '2.5px',
-              textTransform: 'uppercase',
-              fontWeight: '700',
-              padding: '0 18px',
-              fontFamily: 'var(--font-sans)',
-              transition: 'color 0.3s ease',
-              position: 'relative',
-              display: 'inline-block'
-            }}
+            className="nav-link desktop-link"
           >
             {item.label}
           </a>
         ))}
+
+        {/* Mobile Hamburger Button */}
+        <button 
+          className={`mobile-menu-btn ${mobileMenuOpen ? 'open' : ''}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </motion.nav>
+
+      {/* Mobile Fullscreen Menu */}
+      <div className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`}>
+        {[...navItems, ...navItemsRight].map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            className="nav-link"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
 
       {/* Hero Content */}
       <div
