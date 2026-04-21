@@ -278,7 +278,7 @@ const Hero = () => {
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
           style={{
             background: 'rgba(255, 255, 255, 0.96)',
-            padding: '60px 55px 60px',
+            padding: 'clamp(20px, 4vw, 60px)',
             borderRadius: '50%',
             aspectRatio: '1/1',
             display: 'flex',
@@ -287,7 +287,7 @@ const Hero = () => {
             alignItems: 'center',
             boxShadow: '0 25px 70px rgba(0,0,0,0.13)',
             maxWidth: '540px',
-            width: '90vw',
+            width: 'clamp(280px, 90vw, 540px)',
             position: 'relative',
             overflow: 'hidden',
           }}
@@ -315,7 +315,7 @@ const Hero = () => {
           >
             <span
               style={{
-                fontSize: '0.9rem',
+                fontSize: 'clamp(0.6rem, 2.5vw, 0.9rem)',
                 letterSpacing: '5px',
                 textTransform: 'uppercase',
                 fontWeight: '700',
@@ -332,7 +332,7 @@ const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontSize: '6.5rem',
+              fontSize: 'clamp(3rem, 11vw, 6.5rem)',
               fontFamily: '"Oswald", "Impact", var(--font-serif)',
               lineHeight: 0.95,
               background: 'linear-gradient(to right, #cf2056, #ef8131)',
@@ -355,11 +355,11 @@ const Hero = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5, ease: 'backOut' }}
             style={{
-              fontSize: '1.2rem',
+              fontSize: 'clamp(0.7rem, 3vw, 1.2rem)',
               letterSpacing: '5px',
               color: '#444',
               fontWeight: '700',
-              margin: '10px 0',
+              margin: 'clamp(5px, 2vw, 10px) 0',
               fontFamily: 'var(--font-sans)',
               position: 'relative',
               zIndex: 2,
@@ -374,7 +374,7 @@ const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontSize: '6.5rem',
+              fontSize: 'clamp(3rem, 11vw, 6.5rem)',
               fontFamily: '"Oswald", "Impact", var(--font-serif)',
               lineHeight: 0.95,
               background: 'linear-gradient(to right, #ef8131, #cf2056)',
@@ -399,8 +399,8 @@ const Hero = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '20px',
-              fontSize: '1.3rem',
+              gap: 'clamp(8px, 3vw, 20px)',
+              fontSize: 'clamp(0.9rem, 3vw, 1.3rem)',
               fontWeight: '600',
               color: '#333',
               fontFamily: 'var(--font-sans)',
@@ -409,10 +409,10 @@ const Hero = () => {
             }}
           >
             <span style={{ letterSpacing: '2px' }}>May</span>
-            <span style={{ width: '2px', height: '35px', background: '#ccc' }} />
+            <span style={{ width: '2px', height: 'clamp(20px, 4vw, 35px)', background: '#ccc' }} />
             <span
               style={{
-                fontSize: '3.5rem',
+                fontSize: 'clamp(2rem, 7vw, 3.5rem)',
                 fontWeight: '900',
                 lineHeight: 1,
                 fontFamily: 'var(--font-serif)',
@@ -421,7 +421,7 @@ const Hero = () => {
             >
               06
             </span>
-            <span style={{ width: '2px', height: '35px', background: '#ccc' }} />
+            <span style={{ width: '2px', height: 'clamp(20px, 4vw, 35px)', background: '#ccc' }} />
             <span style={{ letterSpacing: '2px' }}>2026</span>
           </motion.div>
         </motion.div>
