@@ -124,24 +124,40 @@ const Hero = () => {
         background: '#fef7f9',
       }}
     >
-      {/* Background Image */}
-      <motion.div
-        className="hero-bg"
-        initial={{ scale: 1.08, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.6, ease: 'easeOut' }}
+      {/* Background Image Swipable Container */}
+      <div 
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: `url('/images/demo-wedding-invitation-banner-bg.jpg.webp')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          overflowX: 'auto',
+          overflowY: 'hidden',
           zIndex: 1,
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
         }}
-      />
+      >
+        <style>{`.hide-scrollbar-hero::-webkit-scrollbar { display: none; }`}</style>
+        <motion.img
+          className="hide-scrollbar-hero"
+          src="/images/demo-wedding-invitation-banner-bg.jpg.webp"
+          alt="Couple Background"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.6, ease: 'easeOut' }}
+          style={{
+            height: '100%',
+            width: 'auto',
+            minWidth: 'max(100vw, 150vh)', /* Forces the image to be wider than screen on narrow profiles, creating swipe space */
+            maxWidth: 'none',
+            objectFit: 'cover',
+            display: 'block',
+          }}
+        />
+      </div>
 
       {/* Navigation Bar */}
       <motion.nav
@@ -257,6 +273,7 @@ const Hero = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           textAlign: 'center',
+          pointerEvents: 'none', /* Bypasses touch to let users swipe the background */
         }}
       >
         {/* Large watercolor splashes with Parallax behind the circle */}
