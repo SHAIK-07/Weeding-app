@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from './components/Hero'
 import Intro from './components/Intro'
 import Timeline from './components/Timeline'
@@ -10,6 +10,16 @@ import Petals from './components/Petals'
 import './App.css'
 
 function App() {
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (window.location.hash) {
+      window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="wedding-app">
       <Petals />

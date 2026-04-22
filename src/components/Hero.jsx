@@ -142,7 +142,15 @@ const Hero = () => {
         ))}
 
         {/* Center Logo — SW [♥ or A alternating] SA */}
-        <div className="nav-logo">
+        <a 
+          href="/" 
+          className="nav-logo" 
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = '/';
+          }}
+          style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+        >
           <span>SW</span>
 
           {/* Middle slot: alternates between SVG Heart and red A */}
@@ -190,7 +198,7 @@ const Hero = () => {
 
           {/* SA always black */}
           <span>SA</span>
-        </div>
+        </a>
 
         {navItemsRight.map((item) => (
           <a
