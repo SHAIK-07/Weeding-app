@@ -32,6 +32,23 @@ const Footer = () => {
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div style={{ marginBottom: '60px' }}>
 
+          {/* Thank You Message */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            style={{ marginBottom: '50px' }}
+          >
+            <h2 className="script-font" style={{ fontSize: '4.5rem', color: 'var(--primary-pink)', marginBottom: '5px' }}>Thank You</h2>
+            <p style={{ fontSize: '1.1rem', color: 'var(--text-gray)', fontStyle: 'italic', letterSpacing: '0.5px' }}>
+              for showering us with your blessings and making our celebration complete!
+            </p>
+            <p style={{ fontSize: '0.9rem', color: '#232323', fontWeight: '700', marginTop: '20px', letterSpacing: '3px', textTransform: 'uppercase' }}>
+              — From Team —
+            </p>
+          </motion.div>
+
           {/* Large Animated Logo */}
           <div
             style={{
@@ -68,7 +85,7 @@ const Footer = () => {
                     }}
                   >
                     <svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em">
-                      <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/>
+                      <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
                     </svg>
                   </motion.span>
                 ) : (

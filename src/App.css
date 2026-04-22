@@ -44,6 +44,10 @@ section {
   .main-title {
     font-size: 2.2rem;
   }
+  .ampersand {
+    width: 100%;
+    margin: -10px 0;
+  }
 }
 
 /* Nav Link Animation */
