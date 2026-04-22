@@ -44,12 +44,13 @@ const Events = () => {
           {events.map((event, index) => (
             <motion.div 
               key={index}
-              whileInView={{ y: [ 30, 0 ], opacity: [0, 1] }}
-              transition={{ delay: index * 0.2 }}
-              viewport={{ once: true }}
-              style={{ background: 'var(--white)', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.05)', display: 'flex' }}
+              whileInView={{ y: [ 40, 0 ], opacity: [0, 1] }}
+              transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ scale: 1.03, y: -10, boxShadow: '0 25px 50px rgba(232, 52, 90, 0.15)' }}
+              style={{ background: 'var(--white)', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.05)', display: 'flex', cursor: 'pointer' }}
             >
-              <div style={{ width: '40%', position: 'relative' }}>
+              <div style={{ width: '40%', position: 'relative', overflow: 'hidden' }}>
                 <img src={event.img} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.2)' }} />
                 <div style={{ position: 'absolute', bottom: '20px', left: '20px', color: 'white' }}>

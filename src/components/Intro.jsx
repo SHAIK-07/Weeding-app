@@ -78,13 +78,19 @@ const Intro = () => {
           {/* Bride Column */}
           <motion.div
             whileInView={{ x: [-50, 0], opacity: [0, 1] }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
             className="couple-card"
             style={{ textAlign: 'center', maxWidth: '350px', flex: 1 }}
           >
-            <div style={{ position: 'relative', marginBottom: '30px' }}>
-              <img src="/images/demo-wedding-invitation-img-02.png" alt="Bride" style={{ width: '100%', borderRadius: '15px' }} />
-            </div>
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ scale: 1.05 }}
+              style={{ position: 'relative', marginBottom: '30px', cursor: 'pointer' }}
+            >
+              <img src="/images/demo-wedding-invitation-img-02.png" alt="Bride" style={{ width: '100%', borderRadius: '15px', boxShadow: '0 15px 35px rgba(0,0,0,0.1)' }} />
+            </motion.div>
             <span style={{ color: 'var(--primary-pink)', fontWeight: 'bold', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>The Bride</span>
             <h3 style={{ fontSize: '2.5rem', margin: '10px 0' }}>Swetha Sai</h3>
             <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem', lineHeight: '1.8' }}>
@@ -95,20 +101,30 @@ const Intro = () => {
           </motion.div>
 
           {/* Center heart/decoration */}
-          <div className="ampersand" style={{ fontSize: '3rem', color: 'var(--primary-pink)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <motion.div 
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="ampersand" style={{ fontSize: '3rem', color: 'var(--primary-pink)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
             <span className="script-font">&</span>
-          </div>
+          </motion.div>
 
           {/* Groom Column */}
           <motion.div
             whileInView={{ x: [50, 0], opacity: [0, 1] }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
             className="couple-card"
             style={{ textAlign: 'center', maxWidth: '350px', flex: 1 }}
           >
-            <div style={{ position: 'relative', marginBottom: '30px' }}>
-              <img src="/images/demo-wedding-invitation-img-04.png" alt="Groom" style={{ width: '100%', borderRadius: '15px' }} />
-            </div>
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              whileHover={{ scale: 1.05 }}
+              style={{ position: 'relative', marginBottom: '30px', cursor: 'pointer' }}
+            >
+              <img src="/images/demo-wedding-invitation-img-04.png" alt="Groom" style={{ width: '100%', borderRadius: '15px', boxShadow: '0 15px 35px rgba(0,0,0,0.1)' }} />
+            </motion.div>
             <span style={{ color: 'var(--primary-pink)', fontWeight: 'bold', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>The Groom</span>
             <h3 style={{ fontSize: '2.5rem', margin: '10px 0' }}>Satish</h3>
             <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem', lineHeight: '1.8' }}>
